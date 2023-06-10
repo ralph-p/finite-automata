@@ -4,7 +4,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 export type FSMResponseData = {
   state?: string;
-  value?: number;
+  value?: string;
   error?: string;
 }
 
@@ -27,7 +27,8 @@ const runFiniteAutomaton = (states: Set<string>, inputSymbols: Set<string>, init
     transitions.get(fromState)[inputSymbol] = toState;
   }
   
-  let currentState = initialState; // Start with initial state
+  // Start with initial state
+  let currentState = initialState; 
   
   for (let i = 0; i < inputString.length; i++) {
     const input = inputString[i];
@@ -63,7 +64,8 @@ export default function handler(
   
   try {
     const output = runFiniteAutomaton(faProps.allStates, faProps.inputSymbols, faProps.initialState, faProps.finalStates, faProps.equations, faProps.matchingValues, faProps.inputString)
-    const modval = Array.from(faProps.finalStates).indexOf(output);
+    // need to do a `toString` because a 0 triggers a `false` when trying to render
+    const modval = Array.from(faProps.finalStates).indexOf(output).toString();
     const test = parseInt(faProps.inputString, 2) % 3
     
     res.status(200).json({ state: output, value: modval })

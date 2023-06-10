@@ -6,7 +6,6 @@ import { useState } from "react";
 
 export const useFSA = () => {
   const [data, setData] = useState<FSMResponseData>({})
-  const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
   const getCustomFA = () => {
 
@@ -40,9 +39,9 @@ export const useFSA = () => {
     // { states → "S0,S1,S2", inputSymbols → "0,1", initialState → "S0", finalStates → "0,1", equations → "S0,0,S0,1,S1,0,S1,1,S2,0,S2,1", matchingValues → "S0,S1,S2,S0,S1,S2", inputString → "1010" }
     // build it like this so its easier to visualize
     
-    await fetch('/api/fsm?' + searchParams).then((response) => response.json()).then((data) => setData(data)).catch((error) => setError(error))
+    await fetch('/api/fsm?' + searchParams).then((response) => response.json()).then((data) => setData({...data, input: inputString}))
     setLoading(false)
   }
 
-  return { data, error, loading, modThree }
+  return { data, loading, modThree }
 }
