@@ -1,0 +1,7 @@
+export const FA_DEFINITION: {title: string, body: React.ReactNode}[] = [
+    {title: "Q is a finite set of states.", body: ["e.g. (S0, S1, S2)", <br />, "This is passed into the function as a ", <code className="font-mono font-bold">Set()</code>,  " object of unique strings."]},
+    {title: "Σ is a finite input alphabet.",  body: ["e.g. (0, 1)", <br />, "This is passed into the function as a ", <code className="font-mono font-bold">Set()</code>,  " object of unique characters."]}, 
+    {title: "q0 ∈ Q is the initial state",  body: ["e.g. S0", <br />, "This is passed into the function as string that is an element of Q."]},
+    {title: "F ⊆ Q is the set of accepting/final states", body: ["e.g. (S0, S1, S2)", <br />, "This passed into the function as a ", <code className="font-mono font-bold">Set()</code>, " object that is a subset of Q."]},
+    {title: "δ:Q×Σ→Q is the transition function",  body: ["e.g. δ(S0,0) = S0; δ(S0,1) = S1; δ(S1,0) = S2; δ(S1,1) = S0; δ(S2,0) = S1; δ(S2,1) = S2", <br />, "This will be passed into the function as two seperate arrays, an 'equations' array, in this example ", <code className="font-mono font-bold">[['SO', '0'], ...]</code>, " and a 'values' array, in this example ", <code className="font-mono font-bold">['S0', ...]</code>]}
+]
