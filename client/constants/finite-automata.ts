@@ -24,6 +24,21 @@ export const buildFAMap = ( equations: [string, string][], matchingValues: strin
   return transitions
 }
 
+export const moveState = (input: string, inputSymbols: Set<string>, currentState: string, transitions: Map<any, any>) => {
+  
+    // Check if input symbol is valid in the input map provided 
+    if (!inputSymbols.has(input)) {
+      throw new Error(`Invalid input symbol: ${input}`);
+    }
+
+    // Check if transition exists for current state and input symbol
+    if (!transitions.get(currentState) || !transitions.get(currentState)[input]) {
+      throw new Error(`No transition found for state ${currentState} and input symbol ${input}`);
+    }
+    // Update current state to be the new state based on transition mapping
+    return transitions.get(currentState)[input];
+}
+
 export const runFiniteAutomaton = ({ allStates, inputSymbols, initialState, finalStates, equations, matchingValues, inputString }: FAProps) => {
   // check that the final accepting states are in the states set
   finalStates.forEach((s) => {
@@ -35,19 +50,8 @@ export const runFiniteAutomaton = ({ allStates, inputSymbols, initialState, fina
   let currentState = initialState;
 
   for (let i = 0; i < inputString.length; i++) {
-    const input = inputString[i];
-
-    // Check if input symbol is valid in the input map provided 
-    if (!inputSymbols.has(input)) {
-      throw new Error(`Invalid input symbol: ${input}`);
-    }
-
-    // Check if transition exists for current state and input symbol
-    if (!transitions.get(currentState) || !transitions.get(currentState)[input]) {
-      throw new Error(`No transition found for state ${currentState} and input symbol ${input}`);
-    }
     // Update current state to be the new state based on transition mapping
-    currentState = transitions.get(currentState)[input];
+    currentState = moveState(inputString[i], inputSymbols, currentState, transitions)
   }
 
   // Once the input string is complete we check that the current state is in the final state array
