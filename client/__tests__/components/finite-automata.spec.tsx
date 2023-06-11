@@ -1,4 +1,5 @@
 import { getModThreeObject, runFiniteAutomaton } from "@/constants/finite-automata";
+import '@testing-library/jest-dom'
 
 describe('getModThreeObject', () => { 
     let inputString = "1010"

@@ -1,24 +1,35 @@
 import { FAProps } from "./types"
 
-// states: Set<string>, inputSymbols: Set<string>, initialState: string, finalStates: Set<string>, equations: [string, string][], matchingValues: string[], inputString: string
+export const buildFAMap = ( equations: [string, string][], matchingValues: string[]) => {
+  // Transition map which is used to store key: value objects for each state in the equations
+  // since each key in a map has to be unique and has O(1) lookup, we can easily use this to find the connected state trees given a starting state 
+  
+  const transitions = new Map(); 
+
+  // Build transition function based on equations and matching values
+  for (let i = 0; i < equations.length; i++) {
+    // the state the equation starts in
+    const fromState = equations[i][0];
+    // the input for the equation
+    const inputSymbol = equations[i][1];
+    // the state the FA moves to once it processes the input
+    const toState = matchingValues[i];
+    // if there is no starting state in the transitions map, insert a key of the starting state and a value of an empty object
+    if (!transitions.get(fromState)) {
+      transitions.set(fromState, {})
+    }
+    // in each state in the transitions map the output is set for a given input
+    transitions.get(fromState)[inputSymbol] = toState;
+  }
+  return transitions
+}
+
 export const runFiniteAutomaton = ({ allStates, inputSymbols, initialState, finalStates, equations, matchingValues, inputString }: FAProps) => {
   // check that the final accepting states are in the states set
   finalStates.forEach((s) => {
     if (!allStates.has(s)) throw new Error(`Invalid final state: ${s}`);
   })
-  const transitions = new Map(); // Transition function
-
-  // Build transition function based on equations and matching values
-  for (let i = 0; i < equations.length; i++) {
-    const fromState = equations[i][0];
-    const inputSymbol = equations[i][1];
-    const toState = matchingValues[i];
-
-    if (!transitions.get(fromState)) {
-      transitions.set(fromState, {})
-    }
-    transitions.get(fromState)[inputSymbol] = toState;
-  }
+  const transitions = buildFAMap(equations, matchingValues)
 
   // Start with initial state
   let currentState = initialState;
@@ -60,17 +71,14 @@ export const getModThreeObject = (inputString: string): FAProps => {
     allStates.add("S0").add("S1").add("S2")
     inputSymbols.add("0").add("1")
     finalStates.add("S0").add("S1").add("S2")
-    // construct the equation and value array
-    let equations: [string, string][] = [["S0", "0"], ["S0", "1"], ["S1", "0"], ["S1", "1"], ["S2", "0"], ["S2", "1"]]
-    let values: string[] = ["S0", "S1", "S2", "S0", "S1", "S2"]
     // build the prop object
     return {
       allStates, 
       inputSymbols, 
       initialState,
       finalStates, 
-      equations, 
-      matchingValues: values, 
+      equations: [["S0", "0"], ["S0", "1"], ["S1", "0"], ["S1", "1"], ["S2", "0"], ["S2", "1"]], 
+      matchingValues: ["S0", "S1", "S2", "S0", "S1", "S2"], 
       inputString
     }
 }
