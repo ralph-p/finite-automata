@@ -39,15 +39,15 @@ export const moveState = (input: string, inputSymbols: Set<string>, currentState
     return transitions.get(currentState)[input];
 }
 
-export const runFiniteAutomaton = ({ allStates, inputSymbols, initialState, finalStates, equations, matchingValues, inputString }: FAProps) => {
+export const runFiniteAutomaton = ({ allStates, inputSymbols, initialState, finalStates, equations, matchingValues, inputString = ''}: FAProps) => {
   // check that the final accepting states are in the states set
   finalStates.forEach((s) => {
     if (!allStates.has(s)) throw new Error(`Invalid final state: ${s}`);
   })
   const transitions = buildFAMap(equations, matchingValues)
 
-  // Start with initial state
-  let currentState = initialState;
+  // Start with initial state, default it to an empty string if there is no inital state
+  let currentState = initialState || '';
 
   for (let i = 0; i < inputString.length; i++) {
     // Update current state to be the new state based on transition mapping
@@ -85,4 +85,14 @@ export const getModThreeObject = (inputString: string): FAProps => {
       matchingValues: ["S0", "S1", "S2", "S0", "S1", "S2"], 
       inputString
     }
+}
+
+export const getEmptyFSMObject = (): FAProps => {
+      return {
+        allStates: new Set(), 
+        inputSymbols: new Set(),
+        finalStates: new Set(), 
+        equations: [], 
+        matchingValues:[]
+      }
 }

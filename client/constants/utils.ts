@@ -11,11 +11,11 @@ export const finiteAutomatioObjToPayload = (fmObject: FAProps) => {
   return new URLSearchParams({
     states: Array.from(fmObject.allStates).toString(), 
     inputSymbols: Array.from(fmObject.inputSymbols).toString(),
-    initialState: fmObject.initialState,
+    initialState: fmObject.initialState || '',
     finalStates: Array.from(fmObject.finalStates).toString(),
     equations: Array.from(fmObject.equations).toString(),
     matchingValues: Array.from(fmObject.matchingValues).toString(),
-    inputString: fmObject.inputString,
+    inputString: fmObject.inputString || '',
     
   })
 }
