@@ -5,7 +5,7 @@ type FSMVisualizerProps = {
     currentState: string
     states: string[];
 }
-export const FSMVisualizer = ({ currentState, states }: FSMVisualizerProps) => {
+export const FSMVisualizer = ({ currentState, states }: FSMVisualizerProps) => {    
     const svgRef = useRef(null);
     useEffect(() => {
         const svg = d3.select(svgRef.current);
@@ -33,7 +33,7 @@ export const FSMVisualizer = ({ currentState, states }: FSMVisualizerProps) => {
             .attr('dominant-baseline', 'central')
             .text((d: string) => d)
             .attr('fill', 'white');
-    }, [currentState]);
+    }, [currentState, states]);
 
     return (
         <svg ref={svgRef} width={600} height={400} />
