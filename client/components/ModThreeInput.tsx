@@ -1,10 +1,11 @@
+import { useFAContext } from '@/context/context'
 import { useFSA } from '@/hooks/useFSA.hooks'
 import React, { Suspense, useRef, useState } from 'react'
 import { Input } from './Input'
 import { Loading } from './Loading'
 
 export const ModThreeInput = () => {
-  const { data, modThree } = useFSA()
+  const { data, modThree } = useFAContext()
   const inputRef = useRef<HTMLInputElement>(null)
   const onInputChange = () => {
     modThree(inputRef?.current?.value as string)
