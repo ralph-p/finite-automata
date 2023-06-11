@@ -3,7 +3,7 @@ import React, { Suspense, useState } from 'react'
 import { Input } from './Input'
 import { Loading } from './Loading'
 
-export const StateAutomata = () => {
+export const ModThreeInput = () => {
   const { data, modThree } = useFSA()
   const [input, setInput] = useState<string>('')
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {

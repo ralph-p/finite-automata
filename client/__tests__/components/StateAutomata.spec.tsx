@@ -1,10 +1,10 @@
-import { StateAutomata } from "@/components/StateAutomata";
+import { ModThreeInput } from "@/components/ModThreeInput";
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom'
 
-describe('StateAutomata', () => { 
+describe('ModThreeInput', () => { 
     it('should render the component', () => {
-        const { getByTestId } = render(<StateAutomata />);
+        const { getByTestId } = render(<ModThreeInput />);
         expect(getByTestId('sa-component')).toBeVisible()
         expect(getByTestId('sa-title')).toBeVisible()
         expect(getByTestId('no-input')).toBeVisible()
