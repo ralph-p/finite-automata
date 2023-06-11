@@ -20,7 +20,7 @@ export const StateAutomata = (props: Props) => {
 
         <div>
           {
-            data.error ? <div> {data?.error} </div> : (
+            data.error ? <div> <h1 className="text-lg font-bold text-rose-600">{data?.error}</h1> </div> : (
               data?.value && data?.state ? (
               <div className='flex flex-row'>
                 <InfoCard title='Calculated using the FSM' body={` ${input} % 3 = ${data?.value} on Ended on State ${data?.state}`} />
