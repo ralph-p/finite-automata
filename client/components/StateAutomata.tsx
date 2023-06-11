@@ -2,6 +2,7 @@ import { useFSA } from '@/hooks/useFSA.hooks'
 import React, { Suspense, useState } from 'react'
 import { InfoCard } from './InfoCard'
 import { Input } from './Input'
+import { Loading } from './Loading'
 
 type Props = {}
 
@@ -16,11 +17,11 @@ export const StateAutomata = (props: Props) => {
     <div className='w-full max-w-5xl items-center mb-10 space-y-3'>
       <h1 className='text-2xl font-bold'>Calculate Mod-Three of a binary input Using Finite Automation</h1>
       <Input value={input} inputLabel="Enter Mod 3 Input here" onChange={onInputChange} />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loading />}>
 
         <div>
           {
-            data.error ? <div> <h1 className="text-lg font-bold text-rose-600">{data?.error}</h1> </div> : (
+            data.error ? <h1 className="text-lg font-bold text-rose-600 p-2">{data?.error}</h1>: (
               data?.value && data?.state ? (
               <div className='flex flex-row'>
                 <InfoCard title='Calculated using the FSM' body={` ${input} % 3 = ${data?.value} on Ended on State ${data?.state}`} />
