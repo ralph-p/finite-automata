@@ -1,9 +1,12 @@
+import { fsmExample } from '@/assets'
+import Image from 'next/image'
 import React from 'react'
 
 
 export const Description = () => {
   return (
     <div className="w-full max-w-5xl items-center py-5">
+
       <p>
         Finite Automata(FA) is the simplest machine to recognize patterns. The finite automata or finite state machine is an abstract machine that has five elements or tuples.
         It has a set of states and rules for moving from one state to another but it depends upon the applied input symbol.
@@ -22,6 +25,10 @@ export const Description = () => {
         <li>F = (S0, S1, S2)</li>
         <li>δ(S0,0) = S0; δ(S0,1) = S1; δ(S1,0) = S2; δ(S1,1) = S0; δ(S2,0) = S1; δ(S2,1) = S2</li>
       </ul>
+      <p>Below is an example on how the machine moves from state to state depending on the input given</p>
+      <div className="flex place-content-center p-5">
+        <Image src={fsmExample} width={500} height={200} alt="fsm-example" className='rounded'/>
+      </div>
     </div>
   )
 }
