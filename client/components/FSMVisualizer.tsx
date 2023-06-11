@@ -10,7 +10,6 @@ export const FSMVisualizer = ({ currentState, states }: FSMVisualizerProps) => {
     useEffect(() => {
         const svg = d3.select(svgRef.current);
         // Use D3 to manipulate the SVG and visualize the FSM
-        console.log(currentState);
         svg.selectAll('circle').remove()
         svg.selectAll('text').remove()
         // Example: Draw circles for states
