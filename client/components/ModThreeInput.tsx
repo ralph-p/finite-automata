@@ -1,31 +1,18 @@
 import { useFSA } from '@/hooks/useFSA.hooks'
-import React, { Suspense, useState } from 'react'
+import React, { Suspense, useRef, useState } from 'react'
 import { Input } from './Input'
 import { Loading } from './Loading'
 
 export const ModThreeInput = () => {
   const { data, modThree } = useFSA()
-  const [input, setInput] = useState<string>('')
-  const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    modThree(event?.target?.value)
-    setInput(event?.target?.value)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const onInputChange = () => {
+    modThree(inputRef?.current?.value as string)
   }
   return (
     <div className='w-full max-w-5xl items-center mb-10 space-y-3' data-testid="sa-component">
       <h1 className='text-2xl font-bold' data-testid="sa-title">Calculate Mod-Three of a binary input Using Finite Automation</h1>
-      {/* <Input value={input} inputLabel="Enter Mod 3 Input here" onChange={onInputChange} /> */}
-      <div className='flex max-w-md'>
-          <label className='block mb-2 text-sm font-medium text-gray-900 dark:text-white' htmlFor="input-mod-3">Enter Mod 3 Input here</label>
-          <input 
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-            type="text" 
-            id="input-mod-3"
-            placeholder="1010" 
-            required 
-            value={input}
-            onChange={(event) => onInputChange(event)}
-        />
-      </div>
+      <Input inputRef={inputRef} inputLabel="Enter Mod 3 Input here" onChange={onInputChange}/>
       <Suspense fallback={<Loading />}>
         <div>
           {
@@ -39,7 +26,7 @@ export const ModThreeInput = () => {
                     Calculated using the FSM
                     </h2>
                     <div className={`m-0 max-w-[30ch] text-lg`}>
-                    {input} % 3 = {data?.value} on Ended on State {data?.state}
+                    {inputRef?.current?.value} % 3 = {data?.value} on Ended on State {data?.state}
                     </div>
                   </div>
                   <div
@@ -49,7 +36,7 @@ export const ModThreeInput = () => {
                     Calculated by parsing the input
                     </h2>
                     <div className={`m-0 max-w-[30ch] text-lg`}>
-                    {parseInt(input, 2)} % 3 = {parseInt(input, 2) % 3}
+                    {parseInt(inputRef?.current?.value as string, 2)} % 3 = {parseInt(inputRef?.current?.value as string, 2) % 3}
                     </div>
                   </div>
                 </div>
