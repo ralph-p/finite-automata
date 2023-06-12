@@ -1,4 +1,5 @@
 import { getModThreeObject } from "@/constants/finite-automata";
+import { FAProps } from "@/constants/types";
 import { finiteAutomatioObjToPayload } from "@/constants/utils";
 import { FSMResponseData } from "@/pages/api/finite-automaton";
 import { useState } from "react";
@@ -7,8 +8,10 @@ import { useState } from "react";
 export const useFSA = () => {
   const [data, setData] = useState<FSMResponseData>({})
   const [loading, setLoading] = useState(false)
-  const getCustomFA = () => {
-
+  const getCustomFA = async (stateMachine: FAProps) => {
+    setLoading(true)
+    await fetch('/api/finite-automaton?' + finiteAutomatioObjToPayload(stateMachine)).then((response) => response.json()).then((data) => setData({...data}))
+    setLoading(false)
   }
   const modThree = async (inputString: string) => {
     setLoading(true)    
@@ -16,5 +19,5 @@ export const useFSA = () => {
     setLoading(false)
   }
 
-  return { data, loading, modThree }
+  return { data, loading, modThree, getCustomFA }
 }

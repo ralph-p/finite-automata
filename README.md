@@ -39,6 +39,7 @@ You can also use `GET http://localhost:3000/api/mod-three?input=1011100` to run 
     - More Mobile Friendly (esp. svg rendering of states)
     - Better theme   
 - Better testing (test the inputs and hooks more)
+- Bit more control on how the user can create equations
 - Better Web accessibility (improved use for screen readers, remove warnings )
 - Clean up ID's and components
 - Seperate out the logic a bit more for creating the FSM
