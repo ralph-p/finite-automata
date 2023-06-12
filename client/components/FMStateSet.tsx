@@ -19,8 +19,8 @@ export const FMStateSet = () => {
         {
           Array.from(contextFSM.allStates).map((s) => (
             <div key={`start-state-rario-${s}`} className="flex items-center" >
-              <input id="interest1" type="radio" checked={s === contextFSM.initialState} name="startingState" className="mr-2" onClick={() => setStartingState(s)} />
-              <label htmlFor="interest1" className="text-gray-700">{s}</label>
+              <input id={`starting-${s}-state`} type="radio" checked={s === contextFSM.initialState} name="startingState" className="mr-2" onClick={() => setStartingState(s)} />
+              <label htmlFor={`starting-${s}-state`} className="text-gray-700">{s}</label>
             </div>
           ))
         }
@@ -31,8 +31,8 @@ export const FMStateSet = () => {
         {
           Array.from(contextFSM.allStates).map((s) => (
             <div key={`final-state-checkbox-${s}`} className="flex items-center" >
-              <input id="interest1" type="checkbox" checked={contextFSM.finalStates.has(s)} name="finalStates" className="mr-2" onClick={() => setFinalStates(s)} />
-              <label htmlFor="interest1" className="text-gray-700">{s}</label>
+              <input id={`ending-${s}-state`} type="checkbox" checked={contextFSM.finalStates.has(s)} name="finalStates" className="mr-2" onClick={() => setFinalStates(s)} />
+              <label htmlFor={`ending-${s}-state`} className="text-gray-700">{s}</label>
             </div>
           ))
         }

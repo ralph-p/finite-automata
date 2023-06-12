@@ -15,6 +15,7 @@ yarn dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 # Features
 ## Front End
+- Written in NextJS using TypeScript and Twilwind CSS for styling. 
 - Home page that breaks down what a FSM is
 - Mod 3 Example page
     - An input where you can enter a binary string
@@ -23,6 +24,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Builder (under construction)
     - Create all (Q, Σ, q, F, δ)  elements and run the FSM
     - A visualizer to show the states what state you are currently on 
+- Used `D3` visualizer package to crete the states dynamically
+- Used `WAVE Web Accessibility Evaluation Tools` to remove any errors for Accessibility
 ## API
 NextJS provides serverless API routes. 
 Once running you can use `GET http://localhost:3000/api/finite-automaton?states=S0,S1,S2&inputSymbols=0,1&initialState=S0&finalStates=S0,S1,S2&equations=S0,0,S0,1,S1,0,S1,1,S2,0,S2,1&matchingValues=S0,S1,S2,S0,S1,S2&inputString=100` to use the api to get the `state` and `value` for the `FSM`. 
@@ -35,7 +38,8 @@ You can also use `GET http://localhost:3000/api/mod-three?input=1011100` to run 
 - Fix styling 
     - More Mobile Friendly (esp. svg rendering of states)
     - Better theme   
-- Better testing
+- Better testing (test the inputs and hooks more)
+- Better Web accessibility (improved use for screen readers, remove warnings )
 - Clean up ID's and components
 - Seperate out the logic a bit more for creating the FSM
 - Draw lines between the states on the visualizer

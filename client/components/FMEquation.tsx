@@ -25,8 +25,8 @@ export const FMEquation = () => {
           {
             Array.from(contextFSM.allStates).map((s) => (
               <div key={`starting-state-rario-${s}`} className="flex items-center" >
-                <input id="interest1" type="radio" name="equationStartingState" className="mr-2" checked={s === equation.startingState} onChange={() => setEquation({ ...equation, startingState: s })} />
-                <label htmlFor="interest1" className="text-gray-700">{s}</label>
+                <input id={`starting-${s}-state-equation`} type="radio" name="equationStartingState" className="mr-2" checked={s === equation.startingState} onChange={() => setEquation({ ...equation, startingState: s })} />
+                <label htmlFor={`starting-${s}-state-equation`} className="text-gray-700">{s}</label>
               </div>
             ))
           }
@@ -35,8 +35,8 @@ export const FMEquation = () => {
           {
             Array.from(contextFSM.inputSymbols).map((i) => (
               <div key={`input-rario-${i}`} className="flex items-center" >
-                <input id="interest1" type="radio" name="equationInputSymbol" className="mr-2" checked={i === equation.input} onClick={() => setEquation({ ...equation, input: i })} />
-                <label htmlFor="interest1" className="text-gray-700">{i}</label>
+                <input id={`starting-${i}-input-equation`} type="radio" name="equationInputSymbol" className="mr-2" checked={i === equation.input} onClick={() => setEquation({ ...equation, input: i })} />
+                <label htmlFor={`starting-${i}-input-equation`} className="text-gray-700">{i}</label>
               </div>
             ))
           }
@@ -45,8 +45,8 @@ export const FMEquation = () => {
           {
             Array.from(contextFSM.allStates).map((s) => (
               <div key={`ending-state-rario-${s}`} className="flex items-center" >
-                <input id="interest1" type="radio" name="equationEndingState" className="mr-2" checked={s === equation.endingState} onClick={() => setEquation({ ...equation, endingState: s })} />
-                <label htmlFor="interest1" className="text-gray-700">{s}</label>
+                <input id={`final-${s}-state-equation`} type="radio" name="equationEndingState" className="mr-2" checked={s === equation.endingState} onClick={() => setEquation({ ...equation, endingState: s })} />
+                <label htmlFor={`final-${s}-state-equation`} className="text-gray-700">{s}</label>
               </div>
             ))
           }
@@ -59,7 +59,7 @@ export const FMEquation = () => {
             {
               contextFSM?.equations.map((equation, index) => {
                 return (
-                  <code>{`δ(${equation[0]}, ${equation[1]}) = ${contextFSM.matchingValues[index]};`}</code>
+                  <code key={`equation-${index}`}>{`δ(${equation[0]}, ${equation[1]}) = ${contextFSM.matchingValues[index]};`}</code>
                 )
               })
             }
