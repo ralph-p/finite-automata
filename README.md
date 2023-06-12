@@ -26,6 +26,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
     - A visualizer to show the states what state you are currently on 
 - Used `D3` visualizer package to crete the states dynamically
 - Used `WAVE Web Accessibility Evaluation Tools` to remove any errors for Accessibility
+
+Logic for building the FA [can be found here](https://github.com/ralph-p/finite-automata/blob/main/client/constants/finite-automata.ts#L3-L65)
 ## API
 NextJS provides serverless API routes. 
 Once running you can use `GET http://localhost:3000/api/finite-automaton?states=S0,S1,S2&inputSymbols=0,1&initialState=S0&finalStates=S0,S1,S2&equations=S0,0,S0,1,S1,0,S1,1,S2,0,S2,1&matchingValues=S0,S1,S2,S0,S1,S2&inputString=100` to use the api to get the `state` and `value` for the `FSM`. 

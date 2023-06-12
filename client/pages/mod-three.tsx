@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import React, { useState } from 'react';
 import { ModThreeInput } from '@/components/ModThreeInput'
-import { FSMVisualizer } from '@/components/FSMVisualizer';
+import { FSMVisualizer } from '@/components/FMBuilder';
 import { useFAContext } from '@/context/context';
 
 const inter = Inter({ subsets: ['latin'] })

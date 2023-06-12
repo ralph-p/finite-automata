@@ -6,7 +6,7 @@ export const buildFAMap = ( equations: [string, string][], matchingValues: strin
   
   const transitions = new Map(); 
 
-  // Build transition function based on equations and matching values
+  // Build transition function based on equations and matching values, need to run through the equations so here we have a O(E) where E is the length of the equation
   for (let i = 0; i < equations.length; i++) {
     // the state the equation starts in
     const fromState = equations[i][0];
@@ -24,6 +24,7 @@ export const buildFAMap = ( equations: [string, string][], matchingValues: strin
   return transitions
 }
 
+// this has a constant run time of O(1) for looking up the next state based on the transitions map
 export const moveState = (input: string, inputSymbols: Set<string>, currentState: string, transitions: Map<any, any>) => {
   
     // Check if input symbol is valid in the input map provided 
@@ -38,7 +39,10 @@ export const moveState = (input: string, inputSymbols: Set<string>, currentState
     // Update current state to be the new state based on transition mapping
     return transitions.get(currentState)[input];
 }
-
+//  Because the states, input symbols, and final states are stored in Sets the look up time to validate the symbols and states can all be done in O(1) time 
+//  Similarly look ups in the transitions map can be done in O(1) time (check state O(1) + check input transition O(1))
+//  the resulting time complexity would be O(S + E + N) where S are the number of states and E are the equations/matching values and N is the length of the input string
+//  Each of these sets are run through one time so the biggest one will dictate the time it takes to run the FSM
 export const runFiniteAutomaton = ({ allStates, inputSymbols, initialState, finalStates, equations, matchingValues, inputString = ''}: FAProps) => {
   // check that the final accepting states are in the states set
   finalStates.forEach((s) => {

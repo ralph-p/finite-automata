@@ -11,7 +11,7 @@ export const ModThreeInput = () => {
     modThree(inputRef?.current?.value as string)
   }
   return (
-    <div className='w-full max-w-5xl items-center mb-10 space-y-3' data-testid="sa-component">
+    <div className='w-full max-w-5xl items-center mb-10 space-y-3' data-testid="mod-three-input-container">
       <h1 className='text-2xl font-bold' data-testid="sa-title">Calculate Mod-Three of a binary input Using Finite Automation</h1>
       <Input inputRef={inputRef} inputLabel="Enter Mod 3 Input here" onChange={onInputChange}/>
       <Suspense fallback={<Loading />}>
