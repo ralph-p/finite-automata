@@ -9,10 +9,10 @@ type EquationProps = {
 
 export const FMEquation = () => {
     const { contextFSM, updateContextFSM } = useFAContext()
-    if(!contextFSM?.allStates) return <div></div>
     const [equation, setEquation] = useState<EquationProps>({startingState: '', input: '', endingState: ''})
+    if(!contextFSM?.allStates) return <div></div>
     
-    return ( 
+    return (
       <div className="grid grid-cols-4 gap-4">
       <div>Starting State</div>
       <div>Input</div>
@@ -21,7 +21,7 @@ export const FMEquation = () => {
       <div>
         {
           Array.from(contextFSM.allStates).map((s) => (
-            <div className="flex items-center" >
+            <div key={`starting-state-rario-${s}`} className="flex items-center" >
               <input id="interest1" type="radio"  name="equationStartingState" className="mr-2" checked={s === equation.startingState} onClick={() => setEquation({...equation, startingState: s})}/>
               <label htmlFor="interest1" className="text-gray-700">{s}</label>
             </div>
@@ -31,7 +31,7 @@ export const FMEquation = () => {
       <div>
         {
           Array.from(contextFSM.inputSymbols).map((i) => (
-            <div className="flex items-center" >
+            <div key={`input-rario-${i}`} className="flex items-center" >
               <input id="interest1" type="radio" name="equationInputSymbol" className="mr-2" checked={i === equation.input} onClick={() => setEquation({...equation, input: i})} />
               <label htmlFor="interest1" className="text-gray-700">{i}</label>
             </div>
@@ -41,7 +41,7 @@ export const FMEquation = () => {
       <div>
         {
           Array.from(contextFSM.allStates).map((s) => (
-            <div className="flex items-center" >
+            <div key={`ending-state-rario-${s}`} className="flex items-center" >
               <input id="interest1" type="radio" name="equationEndingState" className="mr-2" checked={s === equation.endingState} onClick={() => setEquation({...equation, endingState: s})} />
               <label htmlFor="interest1" className="text-gray-700">{s}</label>
             </div>

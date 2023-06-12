@@ -7,6 +7,7 @@ import { useFAContext } from '@/context/context'
 import { Input } from '@/components/Input'
 import { FSMVisualizer } from '@/components/FSMVisualizer'
 import { FMStateSet } from '@/components/FMStateSet'
+import { FMEquation } from '@/components/FMEquation'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -39,48 +40,7 @@ export default function Build() {
         <Input inputRef={inputRef} inputLabel="Enter a new Input (one letter, no commas)" inputPlaceholder='0' />
         <button onClick={addNewInput} className='font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 bg-gray-800 text-white border-gray-600 hover:bg-gray-700 hover:border-gray-600 focus:ring-gray-700'>Add Input</button>
         <FMStateSet />
-        {/* Move to it's own component */}
-        {
-          contextFSM?.allStates && (
-            <div className="grid grid-cols-4 gap-4">
-              <div>Starting State</div>
-              <div>Input</div>
-              <div>Final State State</div>
-              <div className=""></div>
-              <div>
-                {
-                  Array.from(contextFSM.allStates).map((s) => (
-                    <div className="flex items-center" >
-                      <input id="interest1" type="radio" name="equationStartingState" className="mr-2" />
-                      <label htmlFor="interest1" className="text-gray-700">{s}</label>
-                    </div>
-                  ))
-                }
-              </div>
-              <div>
-                {
-                  Array.from(contextFSM.inputSymbols).map((i) => (
-                    <div className="flex items-center" >
-                      <input id="interest1" type="radio" name="equationInputSymbol" className="mr-2"  />
-                      <label htmlFor="interest1" className="text-gray-700">{i}</label>
-                    </div>
-                  ))
-                }
-              </div>
-              <div>
-                {
-                  Array.from(contextFSM.allStates).map((s) => (
-                    <div className="flex items-center" >
-                      <input id="interest1" type="radio" name="equationEndingState" className="mr-2" />
-                      <label htmlFor="interest1" className="text-gray-700">{s}</label>
-                    </div>
-                  ))
-                }
-              </div>
-              <button>Create Rule</button>
-            </div>
-          )
-        }
+        <FMEquation />
       </div>
       <FSMVisualizer states={Array.from(contextFSM?.allStates || [])} currentState={contextFSM?.initialState || ""} finalStates={Array.from(contextFSM?.finalStates || [])} />
     </main>

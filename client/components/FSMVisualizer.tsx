@@ -8,12 +8,12 @@ type FSMVisualizerProps = {
 }
 export const FSMVisualizer = ({ currentState, states, finalStates }: FSMVisualizerProps) => {
   const svgRef = useRef(null);
-  const getStateColor = (stateName: string) => {
-    if (stateName === currentState) return 'green'
-    if (finalStates && finalStates.includes(stateName)) return 'red'
-    return 'blue'
-  }
   useEffect(() => {
+    const getStateColor = (stateName: string) => {
+      if (stateName === currentState) return 'green'
+      if (finalStates && finalStates.includes(stateName)) return 'red'
+      return 'blue'
+    }
     const svg = d3.select(svgRef.current);
     // remove the old layer when rendering the new svg
     svg.selectAll('circle').remove()
@@ -38,7 +38,7 @@ export const FSMVisualizer = ({ currentState, states, finalStates }: FSMVisualiz
       .attr('dominant-baseline', 'central')
       .text((d: string) => d)
       .attr('fill', 'white');
-  }, [currentState, states]);
+  }, [currentState, states, finalStates]);
 
   return (
     <div className='p-3'>
