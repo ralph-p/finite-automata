@@ -34,8 +34,13 @@ Once running you can use `GET http://localhost:3000/api/finite-automaton?states=
 
 You can also use `GET http://localhost:3000/api/mod-three?input=1011100` to run the `mod-three` example
 ## Tests
-- Written tests for the FSM function, and coverage on all the pages 
+To run tests:
+```
+yarn test
+```
+- Written tests for the FSM function, and coverage on home
 - Main components in Mod 3 are covered in tests
+- Some pages are running into problems I think because I used context, it's also on a D3 component so I'm working on fixing those. 
 # What I would add (2.0)
 - Fix styling 
     - More Mobile Friendly (esp. svg rendering of states)
