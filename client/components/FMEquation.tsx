@@ -6,12 +6,15 @@ type EquationProps = {
   input: string;
   endingState: string;
 }
-
+const newEquation: EquationProps = {startingState: '', input: '', endingState: ''}
 export const FMEquation = () => {
     const { contextFSM, updateContextFSM } = useFAContext()
-    const [equation, setEquation] = useState<EquationProps>({startingState: '', input: '', endingState: ''})
+    const [equation, setEquation] = useState<EquationProps>(newEquation)
     if(!contextFSM?.allStates) return <div></div>
-    
+    const createEquation = () => {
+      const eq = [equation.startingState, equation.input, equation.endingState]
+      updateContextFSM('equation', eq)
+    }
     return (
       <div className="grid grid-cols-4 gap-4">
       <div>Starting State</div>
@@ -22,7 +25,7 @@ export const FMEquation = () => {
         {
           Array.from(contextFSM.allStates).map((s) => (
             <div key={`starting-state-rario-${s}`} className="flex items-center" >
-              <input id="interest1" type="radio"  name="equationStartingState" className="mr-2" checked={s === equation.startingState} onClick={() => setEquation({...equation, startingState: s})}/>
+              <input id="interest1" type="radio"  name="equationStartingState" className="mr-2" checked={s === equation.startingState} onChange={() => setEquation({...equation, startingState: s})}/>
               <label htmlFor="interest1" className="text-gray-700">{s}</label>
             </div>
           ))
@@ -48,7 +51,7 @@ export const FMEquation = () => {
           ))
         }
       </div>
-      <button>Create Rule</button>
+      <button onClick={createEquation}>Create Rule</button>
     </div>
     )
 }

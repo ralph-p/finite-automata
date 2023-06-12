@@ -15,6 +15,8 @@ export default function Build() {
   const { data, contextFSM, updateContextFSM } = useFAContext()
   const stateRef = useRef<HTMLInputElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  console.log(contextFSM);
+  
   const addNewState = () => {
     if (stateRef?.current?.value) {
       // remove commas and white spaces

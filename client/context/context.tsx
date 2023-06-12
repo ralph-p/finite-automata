@@ -9,7 +9,7 @@ interface FAContextProps {
   data: FSMResponseData;
   modThree: (inputString: string) => Promise<void>;
   contextFSM: FAProps | null;
-  updateContextFSM: (key: string, value: string) => void
+  updateContextFSM: (key: string, value: string | string[]) => void
 }
 
 export const FAContext = createContext<FAContextProps>({ data: {}, modThree: voidFunction, contextFSM: null, updateContextFSM: voidFunction })
@@ -27,36 +27,38 @@ export const Context = ({ children }: ContextProps) => {
       setStateFSM(newFSM)
     }
   }, [])
-  const updateContextFSM = (key: string, value: string) => {
+  const updateContextFSM = (key: string, value: string | string[]) => {
     if (stateFSM) {
 
       switch (key) {
         case 'allStates':
           const currentStates = stateFSM.allStates
-          currentStates.add(value)
+          currentStates.add(value as string)
           setStateFSM({ ...stateFSM, allStates: currentStates })
           break;
         case 'inputSymbols':
           const currentInputs = stateFSM.inputSymbols
-          currentInputs.add(value)
+          currentInputs.add(value as string)
           setStateFSM({ ...stateFSM, inputSymbols: currentInputs })
           break;
         case 'initialState':
-          setStateFSM({ ...stateFSM, initialState: value })
+          setStateFSM({ ...stateFSM, initialState: value  as string})
           break;
         case 'finalStates':
           const finalStates = stateFSM.finalStates
-          if(finalStates.has(value)) finalStates.delete(value)
-          else finalStates.add(value)
+          if(finalStates.has(value as string)) finalStates.delete(value as string)
+          else finalStates.add(value as string)
           setStateFSM({ ...stateFSM, finalStates })
           break;
-        // case 'equation':
-        //   const equations = stateFSM.equations
-        //   const matchingValues = stateFSM.matchingValues
-        //   if(finalStates.has(value)) finalStates.delete(value)
-        //   else finalStates.add(value)
-        //   setStateFSM({ ...stateFSM, finalStates })
-        //   break;
+        case 'equation':
+          if(value && value.length === 3) {
+            const equations = stateFSM.equations
+            const matchingValues = stateFSM.matchingValues
+            equations.push([value[0], value[1]])
+            matchingValues.push(value[2])
+            setStateFSM({ ...stateFSM, equations, matchingValues })
+          }
+            break;
         default:
           break;
       }

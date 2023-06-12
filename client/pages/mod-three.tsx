@@ -20,7 +20,7 @@ export default function ModThree() {
       <ModThreeInput />
       <div className="">Current State: {data.state || states[0]}</div>
       <div className='flex flex-col'>
-        <FSMVisualizer currentState={data.state || states[0]} states={states} />
+        <FSMVisualizer currentState={data.state || states[0]} states={states} finalStates={states}/>
 
         <div className="relative overflow-x-auto rounded">
 
