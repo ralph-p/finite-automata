@@ -34,12 +34,21 @@ export const Context = ({ children }: ContextProps) => {
         case 'allStates':
           const currentStates = stateFSM.allStates
           currentStates.add(value)
-          setStateFSM({...stateFSM, allStates: currentStates})
+          setStateFSM({ ...stateFSM, allStates: currentStates })
           break;
         case 'inputSymbols':
           const currentInputs = stateFSM.inputSymbols
           currentInputs.add(value)
-          setStateFSM({...stateFSM, inputSymbols: currentInputs})
+          setStateFSM({ ...stateFSM, inputSymbols: currentInputs })
+          break;
+        case 'initialState':
+          setStateFSM({ ...stateFSM, initialState: value })
+          break;
+        case 'finalStates':
+          const finalStates = stateFSM.finalStates
+          if(finalStates.has(value)) finalStates.delete(value)
+          else finalStates.add(value)
+          setStateFSM({ ...stateFSM, finalStates })
           break;
         default:
           break;
