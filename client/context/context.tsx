@@ -50,6 +50,13 @@ export const Context = ({ children }: ContextProps) => {
           else finalStates.add(value)
           setStateFSM({ ...stateFSM, finalStates })
           break;
+        // case 'equation':
+        //   const equations = stateFSM.equations
+        //   const matchingValues = stateFSM.matchingValues
+        //   if(finalStates.has(value)) finalStates.delete(value)
+        //   else finalStates.add(value)
+        //   setStateFSM({ ...stateFSM, finalStates })
+        //   break;
         default:
           break;
       }
