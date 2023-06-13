@@ -2,14 +2,7 @@
 import { getModThreeObject, runFiniteAutomaton } from '@/constants/finite-automata';
 import { getErrorMessage, reqToFiniteAutomationDTO } from '@/constants/utils';
 import type { NextApiRequest, NextApiResponse } from 'next'
-
-export type FSMResponseData = {
-  state?: string;
-  value?: string;
-  error?: string;
-}
-
-
+import { FSMResponseData } from './finite-automaton';
 
 export default function handler(
   req: NextApiRequest,
