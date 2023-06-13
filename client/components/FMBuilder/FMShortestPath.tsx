@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { useFAContext } from '@/context/context'
-import { findShortestPath } from '@/constants/bfs'
-import { buildFAMap } from '@/constants/finite-automata'
+import { findShortestPath, buildFAMap } from '@/constants'
 import { Input } from '../Input'
 import { FSMVisualizer } from './FSMVisualizer'
 

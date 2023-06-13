@@ -1,6 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { getModThreeObject, runFiniteAutomaton } from '@/constants/finite-automata';
-import { getErrorMessage, reqToFiniteAutomationDTO } from '@/constants/utils';
+import { getModThreeObject, runFiniteAutomaton, getErrorMessage } from '@/constants';
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { FSMResponseData } from './finite-automaton';
 

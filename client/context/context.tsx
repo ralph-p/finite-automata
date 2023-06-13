@@ -1,6 +1,5 @@
 import { fsmExample } from "@/assets";
-import { getEmptyFSMObject } from "@/constants/finite-automata";
-import { FAProps } from "@/constants/types";
+import { FAProps, getEmptyFSMObject } from "@/constants";
 import { useFSA } from "@/hooks/useFSA.hooks";
 import { FSMResponseData } from "@/pages/api/finite-automaton";
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";

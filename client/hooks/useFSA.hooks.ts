@@ -1,6 +1,5 @@
-import { getModThreeObject } from "@/constants/finite-automata";
-import { FAProps } from "@/constants/types";
-import { finiteAutomatioObjToPayload } from "@/constants/utils";
+
+import { finiteAutomatioObjToPayload, FAProps } from "@/constants";
 import { FSMResponseData } from "@/pages/api/finite-automaton";
 import { useState } from "react";
 

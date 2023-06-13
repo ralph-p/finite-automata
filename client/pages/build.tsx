@@ -28,7 +28,7 @@ export default function Build() {
   const onInputChange = () => {
     updateContextFSM('inputString', inputStringRef?.current?.value as string)
   }
-
+  
   return (
     <main
       className={`flex min-h-screen flex-col items-center px-10 pt-20 ${inter.className}`}

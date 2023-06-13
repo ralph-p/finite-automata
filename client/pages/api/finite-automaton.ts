@@ -1,6 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { runFiniteAutomaton } from '@/constants/finite-automata';
-import { getErrorMessage, reqToFiniteAutomationDTO } from '@/constants/utils';
+import { getErrorMessage, reqToFiniteAutomationDTO, runFiniteAutomaton } from '@/constants';
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 export type FSMResponseData = {
