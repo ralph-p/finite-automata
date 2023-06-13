@@ -14,7 +14,7 @@ export const FMShortestPath = () => {
     const findPath = () => {
         if(contextFSM && startRef.current?.value && endRef.current?.value) {
           const transitionMap = buildFAMap(contextFSM.equations, contextFSM?.matchingValues)
-          let pathArray = findShortestPath(Array.from(contextFSM?.allStates), transitionMap, startRef.current?.value, endRef.current?.value, Array.from(contextFSM?.inputSymbols))
+          let pathArray = findShortestPath(transitionMap, startRef.current?.value, endRef.current?.value, Array.from(contextFSM?.inputSymbols))
           setPath(pathArray);
         }
       }

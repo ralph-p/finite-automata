@@ -26,7 +26,7 @@ export const getPathMap = ( transitions: Map<any, any>, start: string, inputSymb
         return pathMap
 }
 
-export const findShortestPath = (allStates: string[], transitions: Map<any, any>, start: string, end: string, inputSymbols: string[]) => {
+export const findShortestPath = (transitions: Map<any, any>, start: string, end: string, inputSymbols: string[]) => {
     // solve
     let pathMap = getPathMap(transitions, start, inputSymbols)
     // reconstruct path
