@@ -1,10 +1,8 @@
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import { useRef} from 'react'
+import { useRef } from 'react'
 import { useFAContext } from '@/context/context'
 import { Input } from '@/components/Input'
-import { FSMVisualizer, FMStateSet, FMEquation } from '@/components/FMBuilder'
-
+import { FSMVisualizer, FMStateSet, FMEquation, FMShortestPath } from '@/components/FMBuilder'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Build() {
@@ -30,6 +28,7 @@ export default function Build() {
   const onInputChange = () => {
     updateContextFSM('inputString', inputStringRef?.current?.value as string)
   }
+
   return (
     <main
       className={`flex min-h-screen flex-col items-center px-10 pt-20 ${inter.className}`}
@@ -51,10 +50,12 @@ export default function Build() {
           ) : null
         }
         {
-         data?.error ? <h1 className="text-lg font-bold text-rose-600 p-2">{data.error}</h1> : ( data?.state && (<div>Final State: {data.state}, Final Value: {data.value}</div>))
+          data?.error ? <h1 className="text-lg font-bold text-rose-600 p-2">{data.error}</h1> : (data?.state && (<div>Final State: {data.state}, Final Value: {data.value}</div>))
         }
       </div>
       <FSMVisualizer states={Array.from(contextFSM?.allStates || [])} currentState={data?.state || contextFSM?.initialState || ""} finalStates={Array.from(contextFSM?.finalStates || [])} />
+      <FMShortestPath />
+
     </main>
   )
 }

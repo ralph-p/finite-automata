@@ -5,8 +5,10 @@ type FSMVisualizerProps = {
   currentState: string
   states: string[];
   finalStates?: string[];
+  header?: string;
 }
-export const FSMVisualizer = ({ currentState, states, finalStates }: FSMVisualizerProps) => {
+const DEFAULT_HEADER = 'Current state is in Green, Final States are in Red, and all other states are Blue. ';
+export const FSMVisualizer = ({ currentState, states, finalStates, header=DEFAULT_HEADER }: FSMVisualizerProps) => {
   const svgRef = useRef(null);
   useEffect(() => {
     const getStateColor = (stateName: string) => {
@@ -41,9 +43,9 @@ export const FSMVisualizer = ({ currentState, states, finalStates }: FSMVisualiz
   }, [currentState, states, finalStates]);
 
   return (
-    <div className='p-3'>
-      Current state is in Green, Final States are in Red, and all other states are Blue. 
-      <svg ref={svgRef} width={600} height={150} />
+    <div className='p-3 max-w-2xl'>
+      <h1 className='font-semibold text-xl'>{header} </h1>
+      <svg ref={svgRef} width={'100%'} height={150} />
     </div>
   );
 };

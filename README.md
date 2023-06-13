@@ -44,7 +44,7 @@ yarn test
 # What I would add (2.0)
 - Fix styling 
     - More Mobile Friendly (esp. svg rendering of states)
-    - Better theme   
+    - Better theme, more reusable components   
 - Better testing (test the inputs and hooks more)
 - Bit more control on how the user can create equations
 - Better Web accessibility (improved use for screen readers, remove warnings )
