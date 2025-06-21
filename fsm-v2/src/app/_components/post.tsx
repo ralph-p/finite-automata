@@ -1,36 +1,23 @@
 "use client";
 
-import { useState } from "react";
-
-import { api } from "@/trpc/react";
 import FSMControls from "./FSMControls";
+import { equations, inputs, states } from "@/utils/mock_1";
+import type { FSMInterface } from "@/utils/interface";
 import FSMViewer from "./FSMViewer";
 
+const machines: FSMInterface = 
+  {
+    id: 1,
+    equations,
+    states,
+    inputs,
+  }
 
 export function LatestPost() {
-  const [latestMachine] = api.fsmRouter.getLatest.useSuspenseQuery();
-
-  const utils = api.useUtils();
-  const [name, setName] = useState("");
-  // const createPost = api.fsmRouter.create.useMutation({
-  //   onSuccess: async () => {
-  //     await utils.fsmRouter.invalidate();
-  //     setName("");
-  //   },
-  // });
-
   return (
-    <div className="w-full max-w-screen-xl">
-      {latestMachine ? (
-        <div className="w-full row gap-3 justify-center flex">
-
-        <FSMControls fsm={latestMachine} initialStateId="s1"/>
-        <FSMViewer fsm={latestMachine} />
-        </div>
-      ) : (
-        <p>You have no machine yet.</p>
-      )}
-      
+    <div className="w-full max-w-screen-xl flex flex-col sm:flex-row">
+      <FSMControls fsm={machines} initialStateId="s1"/>
+      <FSMViewer fsm={machines} />
     </div>
   );
 }

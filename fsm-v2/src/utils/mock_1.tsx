@@ -1,18 +1,86 @@
+import { DashboardMain } from "@/app/_components/dashboard/main";
 import type { Equation, Input, State } from "./interface";
+import { DashboardProfile } from "@/app/_components/dashboard/profile";
+const Home: React.FC = () => <div className="p-4">🏠 Home Page</div>;
+const Login: React.FC = () => (
+  <div className="p-4">
+    🔐 Login Page
+    <input className="block border mt-2 px-2 py-1" placeholder="Username" />
+    <input className="block border mt-2 px-2 py-1" type="password" placeholder="Password" />
+  </div>
+);
+const ForgotPassword: React.FC = () => (
+  <div className="p-4">
+    ❓ Forgot Password
+    <input className="block border mt-2 px-2 py-1" placeholder="Enter your email" />
+  </div>
+);
+const ForgotPasswordUpdate: React.FC = () => (
+  <div className="p-4">
+    ✏️ Reset Password
+    <input className="block border mt-2 px-2 py-1" type="password" placeholder="New password" />
+  </div>
+);
 
+
+const DashboardProfileInfo: React.FC = () => (
+  <div className="p-4">
+    📄 Profile Info
+    <ul className="list-inside list-disc text-sm mt-2">
+      <li>Member since: Jan 2023</li>
+      <li>Last login: Today</li>
+    </ul>
+  </div>
+);
+const DashboardAnalytics: React.FC = () => (
+  <div className="p-4">
+    📈 Analytics
+    <p className="text-sm text-gray-600">Views this week: 123</p>
+  </div>
+);
+const Settings: React.FC = () => (
+  <div className="p-4">
+    ⚙️ Settings
+    <label className="block text-sm">Theme</label>
+    <select className="border px-2 py-1 mt-1">
+      <option>System</option>
+      <option>Light</option>
+      <option>Dark</option>
+    </select>
+  </div>
+);
+const SettingsConfirm: React.FC = () => (
+  <div className="p-4">
+    ✅ Confirm
+    <p className="text-sm">Your settings have been saved.</p>
+  </div>
+);
+const SettingsDate: React.FC = () => (
+  <div className="p-4">
+    📅 Date Settings
+    <select className="border px-2 py-1 mt-1">
+      <option>MM/DD/YYYY</option>
+      <option>DD/MM/YYYY</option>
+      <option>YYYY-MM-DD</option>
+    </select>
+  </div>
+);
 const machineStates: State[] = [
-    { id: "s1", name: "Home", pageUrl: "/home" },
-    { id: "s2", name: "Login", pageUrl: "/login" },
-    { id: "s3", name: "ForgotPassword", pageUrl: "/login" },
-    { id: "s4", name: "ForgotPassword - Update", pageUrl: "/login" },
-    { id: "s5", name: "Dashboard - Main", pageUrl: "/dashboard" },
-    { id: "s6", name: "Dashboard - Profile", pageUrl: "/dashboard" },
-    { id: "s7", name: "Dashboard - Profile Info", pageUrl: "/dashboard" },
-    { id: "s8", name: "Dashboard - Analytics", pageUrl: "/dashboard" },
-    { id: "s9", name: "Settings", pageUrl: "/settings" },
-    { id: "s10", name: "Settings - Confirm", pageUrl: "/settings" },
-    { id: "s11", name: "Settings - Date", pageUrl: "/settings" },
-  ];
+  { id: "s1", name: "Home", pageUrl: "/home", component: Home },
+  { id: "s2", name: "Login", pageUrl: "/login", component: Login },
+  { id: "s3", name: "ForgotPassword", pageUrl: "/login", component: ForgotPassword },
+  { id: "s4", name: "ForgotPassword - Update", pageUrl: "/login", component: ForgotPasswordUpdate },
+  { id: "s5", name: "Dashboard - Main", pageUrl: "/dashboard", component: DashboardMain },
+  { id: "s6", name: "Dashboard - Profile", pageUrl: "/dashboard", component: DashboardProfile },
+  { id: "s7", name: "Dashboard - Profile Info", pageUrl: "/dashboard", component: DashboardProfileInfo },
+  { id: "s8", name: "Dashboard - Analytics", pageUrl: "/dashboard", component: DashboardAnalytics },
+  { id: "s9", name: "Settings", pageUrl: "/settings", component: Settings },
+  { id: "s10", name: "Settings - Confirm", pageUrl: "/settings", component: SettingsConfirm },
+  { id: "s11", name: "Settings - Date", pageUrl: "/settings", component: SettingsDate },
+];
+
+
+
   
   const machineInputs: Input[] = [
     { id: "i1", name: "GoToLogin" },                    // 0
@@ -33,17 +101,17 @@ const machineStates: State[] = [
   ];
   
   const states = {
-    Home: { id: "s1", name: "Home", pageUrl: "/home" },
-    Login: { id: "s2", name: "Login", pageUrl: "/login" },
-    ForgotPassword: { id: "s3", name: "ForgotPassword", pageUrl: "/login" },
-    ForgotPasswordUpdate: { id: "s4", name: "ForgotPassword - Update", pageUrl: "/login" },
-    DashboardMain: { id: "s5", name: "Dashboard - Main", pageUrl: "/dashboard" },
-    DashboardProfile: { id: "s6", name: "Dashboard - Profile", pageUrl: "/dashboard" },
-    DashboardProfileInfo: { id: "s7", name: "Dashboard - Profile Info", pageUrl: "/dashboard" },
-    DashboardAnalytics: { id: "s8", name: "Dashboard - Analytics", pageUrl: "/dashboard" },
-    Settings: { id: "s9", name: "Settings", pageUrl: "/settings" },
-    SettingsConfirm: { id: "s10", name: "Settings - Confirm", pageUrl: "/settings" },
-    SettingsDate: { id: "s11", name: "Settings - Date", pageUrl: "/settings" },
+    Home: machineStates[0] ?? { id: "-1", name: "-1", component: () => <></>, pageUrl: "/" },
+    Login: machineStates[1] ?? { id: "-1", name: "-1", component: () =><></>, pageUrl: "/" },
+    ForgotPassword: machineStates[2] ?? { id: "-1", name: "-1", component: () =><></>, pageUrl: "/" },
+    ForgotPasswordUpdate: machineStates[3] ?? { id: "-1", name: "-1", component: () =><></>, pageUrl: "/" },
+    DashboardMain: machineStates[4] ?? { id: "-1", name: "-1", component: () =><></>, pageUrl: "/" },
+    DashboardProfile: machineStates[5] ?? { id: "-1", name: "-1", component: () =><></>, pageUrl: "/" },
+    DashboardProfileInfo: machineStates[6] ?? { id: "-1", name: "-1", component: () =><></>, pageUrl: "/" },
+    DashboardAnalytics: machineStates[7] ?? { id: "-1", name: "-1", component: () =><></>, pageUrl: "/" },
+    Settings: machineStates[8] ?? { id: "-1", name: "-1", component: () =><></>, pageUrl: "/" },
+    SettingsConfirm: machineStates[9] ?? { id: "-1", name: "-1", component: () =><></>, pageUrl: "/" },
+    SettingsDate: machineStates[10] ?? { id: "-1", name: "-1", component: () => <></>, pageUrl: "/" },
   };
   
   const inputs = {
@@ -70,11 +138,11 @@ const machineStates: State[] = [
     { startState: states.Home, input: inputs.GoToDashboard, endState: states.DashboardMain },                    // Home → GoToLogin → Login
     { startState: states.Login, input: inputs.LoginForgotPassword, endState: states.ForgotPassword }, // Login → ForgotPassword
     { startState: states.ForgotPassword, input: inputs.ForgotPasswordSuccess, endState: states.ForgotPasswordUpdate }, // ForgotPassword → Update
+    { startState: states.ForgotPassword, input: inputs.Back, endState: states.Login }, // ForgotPassword → Update
     { startState: states.ForgotPasswordUpdate, input: inputs.Close, endState: states.Login },        // Update → Close → Login
   
     // Login → Dashboard
     { startState: states.Login, input: inputs.LoginSuccess, endState: states.DashboardMain },        // Login → Success → Dashboard Main
-    { startState: states.Login, input: inputs.LoginFailure, endState: states.Login },                // Login → Failure → Retry Login
     { startState: states.Login, input: inputs.Back, endState: states.Home },                // Login → Failure → Retry Login
   
     // Dashboard internal transitions

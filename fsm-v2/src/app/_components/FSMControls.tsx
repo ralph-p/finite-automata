@@ -1,3 +1,4 @@
+import { FSMContext } from "@/context/fsmContext";
 import type { FSMInterface, State } from "@/utils/interface";
 import { useState } from "react";
 
@@ -19,13 +20,12 @@ const FSMControls: React.FC<FSMControlsProps> = ({ fsm, initialStateId }) => {
     const eq = availableTransitions.find((e) => e.input.id === inputId);
     if (eq) setCurrentState(eq.endState);
   };
-
+  const FunctionToRender = currentState.component
   return (
-    <div className="mx-auto max-w-screen-xs space-y-4 p-4">
+    <div className="max-w-screen-xs mx-auto space-y-4 p-4">
       <div className="text-xl font-bold">
         Current State: {currentState.name}
       </div>
-
       {availableTransitions.length > 0 ? (
         <div className="space-y-2">
           <div className="font-semibold">Available Actions:</div>
@@ -46,7 +46,10 @@ const FSMControls: React.FC<FSMControlsProps> = ({ fsm, initialStateId }) => {
           No available transitions from this state.
         </div>
       )}
-
+      {/* Component display */}
+      <FSMContext.Provider value={{ transitionTo: handleTransition }}>
+        <FunctionToRender />
+      </FSMContext.Provider>
       <div className="text-sm text-gray-500">Page: {currentState.pageUrl}</div>
     </div>
   );

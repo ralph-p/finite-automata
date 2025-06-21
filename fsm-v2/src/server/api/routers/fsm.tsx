@@ -35,6 +35,6 @@ export const fsmRouter = createTRPCRouter({
   //   }),
 
   getLatest: publicProcedure.query(() => {
-    return machines.at(-1) ?? null;
+    return machines[0];
   }),
 });

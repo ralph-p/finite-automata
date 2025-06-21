@@ -15,6 +15,7 @@ interface Equation {
 interface State {
     id: string,
     name: string,
+    component: React.FC
     pageUrl: string;
 }
 interface Input {

@@ -1,21 +1,21 @@
 import type { Input, State } from "./interface";
 
-const machineStates: State[] = [
-    { id: "s1", name: "Home", pageUrl: "/home" },
-    { id: "s2", name: "Login", pageUrl: "/login" },
-    { id: "s5", name: "Business List", pageUrl: "/:zip/:category" },
-    { id: "s6", name: "Booking Select Time Slot", pageUrl: "/:zip/:category/booking" },
-    { id: "s6", name: "Contact Form", pageUrl: "/:zip/:category/booking" },
-    { id: "s6", name: "Confirm Booking", pageUrl: "/:zip/:category/booking" },
-    { id: "s6", name: "Confirmation", pageUrl: "/:zip/:category/booking" },
-    { id: "s6", name: "Edit Personal Info", pageUrl: "/booking/edit-personal" },
-    { id: "s6", name: "Book Time Slot", pageUrl: "/:zip/:category/booking/reschedule" },
-    { id: "s6", name: "Confirm Booking", pageUrl: "/:zip/:category/booking/reschedule" },
-    { id: "s6", name: "Confirmation Page", pageUrl: "/:zip/:category/booking/reschedule" },
-    { id: "s6", name: "Book Time Slot", pageUrl: "/:zip/:category/booking/cancel" },
-    { id: "s6", name: "Cancel Question", pageUrl: "/:zip/:category/booking/cancel" },
-    { id: "s6", name: "Confirmation Page", pageUrl: "/:zip/:category/booking/cancel" },
-  ];
+// const machineStates: State[] = [
+//     { id: "s1", name: "Home", pageUrl: "/home" },
+//     { id: "s2", name: "Login", pageUrl: "/login" },
+//     { id: "s5", name: "Business List", pageUrl: "/:zip/:category" },
+//     { id: "s6", name: "Booking Select Time Slot", pageUrl: "/:zip/:category/booking" },
+//     { id: "s6", name: "Contact Form", pageUrl: "/:zip/:category/booking" },
+//     { id: "s6", name: "Confirm Booking", pageUrl: "/:zip/:category/booking" },
+//     { id: "s6", name: "Confirmation", pageUrl: "/:zip/:category/booking" },
+//     { id: "s6", name: "Edit Personal Info", pageUrl: "/booking/edit-personal" },
+//     { id: "s6", name: "Book Time Slot", pageUrl: "/:zip/:category/booking/reschedule" },
+//     { id: "s6", name: "Confirm Booking", pageUrl: "/:zip/:category/booking/reschedule" },
+//     { id: "s6", name: "Confirmation Page", pageUrl: "/:zip/:category/booking/reschedule" },
+//     { id: "s6", name: "Book Time Slot", pageUrl: "/:zip/:category/booking/cancel" },
+//     { id: "s6", name: "Cancel Question", pageUrl: "/:zip/:category/booking/cancel" },
+//     { id: "s6", name: "Confirmation Page", pageUrl: "/:zip/:category/booking/cancel" },
+//   ];
   
   const machineInputs: Input[] = [
     { id: "i1", name: "GoToLogin" },                    // 0
