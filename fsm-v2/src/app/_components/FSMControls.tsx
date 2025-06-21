@@ -8,7 +8,7 @@ interface FSMControlsProps {
 
 const FSMControls: React.FC<FSMControlsProps> = ({ fsm, initialStateId }) => {
   const [currentState, setCurrentState] = useState<State | undefined>(
-    fsm.states.find((s) => s.id === initialStateId) || fsm.states[0],
+    fsm.states.find((s) => s.id === initialStateId) ?? fsm.states[0],
   );
   if (!currentState) return null;
   const availableTransitions = fsm.equations.filter(

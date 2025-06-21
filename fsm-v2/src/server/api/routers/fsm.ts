@@ -2,7 +2,7 @@ import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
 import type { FSMInterface } from "@/utils/interface";
-import { equations, inputs, states } from "@/utils/mock";
+import { equations, inputs, states } from "@/utils/mock_1";
 
 // Mocked DB
 const machines: FSMInterface[] = [
