@@ -45,7 +45,10 @@ export const FSMVisualizer = ({ currentState, states, finalStates, header=DEFAUL
   return (
     <div className='p-3 max-w-2xl'>
       <h1 className='font-semibold text-xl'>{header} </h1>
+      <div style={{overflow: 'scroll'}}>
+
       <svg ref={svgRef} width={'100%'} height={150} />
+      </div>
     </div>
   );
 };

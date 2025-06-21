@@ -6,7 +6,7 @@ import { FSMVisualizer } from './FSMVisualizer'
 
 
 export const FMShortestPath = () => {
-    const { data, contextFSM, updateContextFSM, getCustomFA } = useFAContext()
+    const { contextFSM } = useFAContext()
     const [path, setPath] = useState<string[] | boolean>(false)
     const startRef = useRef<HTMLInputElement>(null)
     const endRef = useRef<HTMLInputElement>(null)

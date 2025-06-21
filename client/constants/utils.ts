@@ -61,3 +61,30 @@ export const reqToFiniteAutomationDTO = (req: NextApiRequest) => {
   }
   return initalProps
 }
+
+// use backtracking to get all the combos of input symbols
+export const getAllInputs = (inputSymbols: string[], length: number) => {
+  let result: string[] = []
+  // recursive backtracking function
+  const backTrack = (combo: string[], start: number) => {
+    // function has reached the required length
+    if(combo.length === length) {
+      // add the input string to the results array
+      result.push([...combo].join(""))
+      return
+    }
+    // create a for loop to run from the start input to the length of the input symbols
+    for(var i = start; i < inputSymbols.length; i ++) {
+      // add the current character to the combo array
+      combo.push(inputSymbols[i])
+      // recursively call the backTrack function to  update the combo string, this allows for repeating characters (if you don't want repeating characters send in start + 1)
+      backTrack(combo, start)
+      // after the recursive call the last character is removed from the combo array. This is the "backtracking" step, we then move on to the next character in the inputSymbols array
+      combo.pop()
+    }
+  }
+  // populate the result array by calling the backTrack recursive function
+  backTrack([], 0)
+
+  return result
+}

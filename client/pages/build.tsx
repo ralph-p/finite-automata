@@ -2,7 +2,8 @@ import { Inter } from 'next/font/google'
 import { useRef } from 'react'
 import { useFAContext } from '@/context/context'
 import { Input } from '@/components/Input'
-import { FSMVisualizer, FMStateSet, FMEquation, FMShortestPath } from '@/components/FMBuilder'
+import { FSMVisualizer, FMStateSet, FMEquation, FMShortestPath, FMPossibleInputs } from '@/components/FMBuilder'
+import { getAllInputs } from '@/constants'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Build() {
@@ -28,7 +29,17 @@ export default function Build() {
   const onInputChange = () => {
     updateContextFSM('inputString', inputStringRef?.current?.value as string)
   }
-  
+  const ShowAllInputs = () => {
+    if(!contextFSM || !contextFSM?.inputSymbols) return <div></div>
+    let inputs = getAllInputs(Array.from(contextFSM.inputSymbols), contextFSM?.equations.length)
+    return (
+      <div className='flex flex-row space-x-1 flex-wrap'>
+        {
+          inputs.map((i) => <p>{i}, </p>)
+        }
+      </div>
+    )
+  }
   return (
     <main
       className={`flex min-h-screen flex-col items-center px-10 pt-20 ${inter.className}`}
@@ -41,9 +52,12 @@ export default function Build() {
         <button onClick={addNewInput} className='font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 bg-gray-800 text-white border-gray-600 hover:bg-gray-700 hover:border-gray-600 focus:ring-gray-700'>Add Input</button>
         <FMStateSet />
         <FMEquation />
+        <FMPossibleInputs />
+        <ShowAllInputs />
         {
           contextFSM?.equations.length && contextFSM?.matchingValues.length ? (
             <div className='flex flex-row space-x-2'>
+
               <Input inputRef={inputStringRef} inputLabel="Enter an input string to test your FSM" inputPlaceholder='010' onChange={onInputChange} />
               <button className='font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 bg-gray-800 text-white border-gray-600 hover:bg-gray-700 hover:border-gray-600 focus:ring-gray-700' onClick={() => getCustomFA(contextFSM)}>Run FSM</button>
             </div>
