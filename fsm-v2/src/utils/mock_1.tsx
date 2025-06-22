@@ -1,7 +1,7 @@
 import { DashboardMain } from "@/app/_components/dashboard/main";
 import type { Equation, Input, State } from "./interface";
 import { DashboardProfile } from "@/app/_components/dashboard/profile";
-const Home: React.FC = () => <div className="p-4">🏠 Home Page</div>;
+import { HomeMain } from "@/app/_components/home";
 const Login: React.FC = () => (
   <div className="p-4">
     🔐 Login Page
@@ -66,7 +66,7 @@ const SettingsDate: React.FC = () => (
   </div>
 );
 const machineStates: State[] = [
-  { id: "s1", name: "Home", pageUrl: "/home", component: Home },
+  { id: "s1", name: "Home", pageUrl: "/home", component: HomeMain },
   { id: "s2", name: "Login", pageUrl: "/login", component: Login },
   { id: "s3", name: "ForgotPassword", pageUrl: "/login", component: ForgotPassword },
   { id: "s4", name: "ForgotPassword - Update", pageUrl: "/login", component: ForgotPasswordUpdate },

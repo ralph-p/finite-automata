@@ -8,8 +8,10 @@ export const DashboardProfile: React.FC = () => {
       👤 Profile
 
       </h2>
-      <input className="block border mt-2 px-2 py-1" placeholder="Name" defaultValue="John Doe" />
-      <input className="block border mt-2 px-2 py-1" placeholder="Email" defaultValue="john@example.com" />
+      <label className="text-gray-800">Name</label>
+      <input className="block border mt-2 px-2 py-1 text-gray-800" placeholder="Name" defaultValue="John Doe" />
+      <label className="text-gray-800">Email</label>
+      <input className="block border mt-2 px-2 py-1 text-gray-800" placeholder="Email" defaultValue="john@example.com" />
       <div className="flex flex-wrap gap-3">
         <button
           onClick={() => transitionTo("i8")}

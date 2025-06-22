@@ -7,7 +7,7 @@ export const DashboardMain: React.FC = () => {
     <div className="p-6 space-y-4 rounded shadow bg-white">
       <h2 className="text-2xl font-semibold text-gray-800 flex items-center gap-2">
         📊 Dashboard
-        <span className="text-sm text-gray-400 font-normal">Main Overview</span>
+        <span className="text-sm text-gray-400 font-normal">Main Dashboard</span>
       </h2>
 
       <p className="text-gray-600 text-sm">
